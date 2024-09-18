@@ -5,16 +5,16 @@
 //  Created by richardo thayeb on 12/29/20.
 //
 
-import Foundation
+import UIKit
 
-class CameraFocusSquare: UIView,CAAnimationDelegate {
+class CameraFocusSquare: UIView, CAAnimationDelegate {
 
-    internal let kSelectionAnimation:String = "selectionAnimation"
+    internal let kSelectionAnimation: String = "selectionAnimation"
 
     fileprivate var _selectionBlink: CABasicAnimation?
-    
-    var borderColor : UIColor!
-    var borderWidth : CGFloat!
+
+    var borderColor: UIColor!
+    var borderWidth: CGFloat!
 
     convenience init(touchPoint: CGPoint, borderColor: UIColor!, borderWidth: CGFloat!) {
         self.init()
@@ -41,8 +41,6 @@ class CameraFocusSquare: UIView,CAAnimationDelegate {
         // this is duration per blink
         self._selectionBlink!.delegate = self
     }
-
-
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,8 +74,8 @@ class CameraFocusSquare: UIView,CAAnimationDelegate {
      Hides the view after the animation stops. Since the animation is automatically removed, we don't need to do anything else here.
      */
 
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool){
-        if flag{
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
             // hide the view
             self.alpha = 0.0
             self.isHidden = true
