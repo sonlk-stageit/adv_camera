@@ -102,9 +102,10 @@ class AdvCameraController {
     }
   }
 
-  Future<void> captureImage({int? maxSize}) async {
+  Future<void> captureImage({int? maxSize, double? compressQuality}) async {
     await channel.invokeMethod('captureImage', <String, dynamic>{
       'maxSize': maxSize,
+      'compressQuality': compressQuality,
     });
   }
 

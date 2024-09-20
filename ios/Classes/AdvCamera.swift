@@ -21,6 +21,7 @@ public class AdvCameraView: NSObject, FlutterPlatformView, AVCaptureVideoDataOut
     var camera: AVCaptureDevice?
     var fileNamePrefix: String = ""
     var maxSize: Int?
+    var compressQuality: Float?
     var orientationLast = UIInterfaceOrientation(rawValue: 0)!
     var motionManager: CMMotionManager?
     var focusRectColor: UIColor?
@@ -108,6 +109,9 @@ public class AdvCameraView: NSObject, FlutterPlatformView, AVCaptureVideoDataOut
 
             let maxSize = (dict["maxSize"] as? Int)
             self.maxSize = maxSize
+            
+            let compressQuality = (dict["compressQuality"] as? Float)
+            self.compressQuality = compressQuality
         }
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -562,7 +566,8 @@ public class AdvCameraView: NSObject, FlutterPlatformView, AVCaptureVideoDataOut
         autoreleasepool {
             let rotatedImage = rotateImage(image: image)!
             let newImage = resizeImage(image: rotatedImage)!
-            guard let data = newImage.jpegData(compressionQuality: 1) ?? newImage.pngData() else {
+            let compressQuality = CGFloat(self.compressQuality ?? 1)
+            guard let data = newImage.jpegData(compressionQuality: compressQuality) ?? newImage.pngData() else {
                 return false
             }
             guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {

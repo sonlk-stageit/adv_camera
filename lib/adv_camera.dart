@@ -34,6 +34,7 @@ class AdvCamera extends StatefulWidget {
   final bool ignorePermission;
   final String? savePath;
   final int? maxSize;
+  final double? compressQuality;
 
   const AdvCamera({
     Key? key,
@@ -50,6 +51,7 @@ class AdvCamera extends StatefulWidget {
     this.ignorePermission = false,
     this.savePath,
     this.maxSize,
+    this.compressQuality,
   })  : this.initialCameraType = initialCameraType,
         this.cameraPreviewRatio = cameraPreviewRatio,
         this.cameraSessionPreset = cameraSessionPreset,
@@ -161,6 +163,7 @@ class _AdvCameraState extends State<AdvCamera> with VisibilityAwareStateMixin<Ad
       "previewRatio": previewRatio,
       "fileNamePrefix": widget.fileNamePrefix ?? "adv_camera",
       "maxSize": widget.maxSize,
+      "compressQuality": widget.compressQuality,
       "sessionPreset": sessionPreset,
       "bestPictureSize": widget.bestPictureSize,
       "focusRectColorRed": widget.focusRectColor?.red ?? 12,
