@@ -52,6 +52,10 @@ public class AdvCameraView: NSObject, FlutterPlatformView, AVCaptureVideoDataOut
         case torch
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     init(_ frame: CGRect, viewId: Int64, args: Any?, with registrar: FlutterPluginRegistrar) {
 
         previewView = BoundsObservableView(frame: frame)
